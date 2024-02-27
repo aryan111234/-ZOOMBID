@@ -20,3 +20,8 @@ export const LoginUser = async (payload) => {
     }
 }
 
+
+// Getting current user
+export const GetUser = async () => {
+      
+}
