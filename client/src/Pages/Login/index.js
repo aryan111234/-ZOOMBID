@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Form, Input, message } from "antd";
 import { Button } from "antd";
 import { Link, useNavigate } from "react-router-dom";
-import Divider from "../../components/Divider";
+import Divider from "../../Components/Divider";
 import { LoginUser } from "../../apicalls/users";
 
 const rules = [

@@ -15,8 +15,13 @@ root.render(
             colorPrimary: "#405138",
             colorPrimaryHover: "#405138",
             borderRadius: "0px",
+            boxShadow: "none",
           },
         },
+        token : {
+          borderRadius: "2px",
+          colorPrimary: "#405138",
+        }
       }}
     ></ConfigProvider>
     <App />

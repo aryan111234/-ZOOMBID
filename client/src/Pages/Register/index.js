@@ -1,8 +1,8 @@
 import React from "react";
-import { Form, Input, message } from "antd"; // Import message from antd
+import { Form, Input, message } from "antd"; 
 import { Button } from "antd";
 import { Link } from "react-router-dom";
-import Divider from "../../components/Divider";
+import Divider from "../../Components/Divider";
 import { RegisterUser } from "../../apicalls/users";
 
 const rules = [
