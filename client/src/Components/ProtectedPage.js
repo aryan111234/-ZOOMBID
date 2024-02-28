@@ -36,19 +36,23 @@ function ProtectedPage({ children }) {
       <div>
         {/* header */}
        < div
-       className="flex justofy-between items-center bg-primary p-5"
-       >
-        <h1 className="text-2xl text-white">
-            ZoomBid
-        </h1>
-        <div className="bg-white py-2 px-5">
-            <span>
-                {user.name}
+       className="flex justofy-between items-center bg-primary p-5" >
+        <h1 className="text-2xl text-white">ZoomBid </h1>
+        <div className="bg-white py-2 px-5 rounded flex gap-1 items-center">
+            <i className="ri-shield-user-line"></i>
+            <span
+            className="underline cursor-pointer uppercase"
+            >{user.name}
             </span>
-        
-
+            <i className="ri-logout-box-r-line ml-10"
+               onClick={() => {
+                localStorage.removeItem("token");
+                navigate("/login");
+               }}
+         ></i>
+         </div>
         </div>
-       </div>
+        {/* className */}
         <div className="p-5">{children}</div>
       </div>
     )
