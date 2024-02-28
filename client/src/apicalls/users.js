@@ -6,7 +6,7 @@ export const RegisterUser = async (payload) => {
         const response = await axiosInstance.post("/apiUsers/register",payload);
         return response.data;
     }catch(error){
-        return error.message
+        return {error: true, message: error.message};
     }
 }
 
@@ -16,12 +16,18 @@ export const LoginUser = async (payload) => {
         const response = await axiosInstance.post("/apiUsers/login",payload);
         return response.data;
     }catch(error){
-        return error.message
+        return {error: true, message: error.message};
     }
 }
 
 
 // Getting current user
-export const GetUser = async () => {
+export const GetCurrentUser = async () => {
+    try{
+        const response = await axiosInstance.get("/api/users/get-current-user");
+        return response.data;
+    }catch (error) {
+        return error.message
+    }
+    };
       
-}

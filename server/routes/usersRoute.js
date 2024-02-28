@@ -2,15 +2,15 @@ const router = require("express").Router();
 const User = require("../models/userModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const authMiddleware = require("../middleware/authMiddleware");
+const authMiddleware = require("../middlewares/authMiddleware");
 
 
 // New user registeration
 router.post("/register", async (req, res) => {
   try {
     // Checking if user already exists
-    const user = await User.findOne({ email: req.body.email });
-    if (user) {
+    const existingUser = await User.findOne({ email: req.body.email });
+    if (existingUser) {
       throw new Error("User already exists");
     }
 
@@ -22,7 +22,7 @@ router.post("/register", async (req, res) => {
     //Saving User
     const newUser = new User(req.body);
     await newUser.save();
-    req.send({
+    res.send({
       success: true,
       message: "User created successfully",
     });
@@ -53,8 +53,8 @@ router.post("/login", async (req, res) => {
     }
 
     // Creating and Assigning token
-    const token = jwt.sign({ userId: User._id }, process.env.jwt_secret, {
-      expireIn: "1d",
+    const token = jwt.sign({ userId: user._id }, process.env.jwt_secret, {
+      expiresIn: "1d",
     });
 
     // Sending Response
@@ -75,11 +75,11 @@ router.post("/login", async (req, res) => {
 
 router.get("/get-current-user",authMiddleware, async (req, res) => {
   try {
-    const user = await User.findById(req, res.userId);
+    const User = await User.findById(req, res.userId);
     res.send({
       success: true,
       message: "User fetched successfully",
-      data: user,
+      data: User,
     });
   } catch (error) {
     res.send({

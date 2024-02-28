@@ -1,25 +1,58 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { message } from "antd";
+import { GetCurrentUser } from "../apicalls/users";
+import { useNavigate } from "react-router-dom";
 
-function ProtectedPage() {
+function ProtectedPage({ children }) {
   const [user, setuser] = React.useState(null);
+  const navigate = useNavigate();
 
   const validateToken = async () => {
     try {
-      const response = await GetCurrent();
+      const response = await GetCurrentUser();
       if (response.success) {
         setuser(response.success);
       } else {
+        navigate("/login");
         message.error(response.message);
       }
     } catch (error) {
-      message.eroor(error.message);
+      navigate("/login");
+      message.error(error.message);
     }
   };
 
   useEffect(() => {
-    validateToken();
+    if (localStorage.getItem("token")) {
+      validateToken();
+    } else {
+      message.error("Please login to continue");
+      navigate("/login");
+    }
   }, []);
-  return <div></div>;
+  return (
+    // Parent element of Protected Route.
+    user && (
+      <div>
+        {/* header */}
+       < div
+       className="flex justofy-between items-center bg-primary p-5"
+       >
+        <h1 className="text-2xl text-white">
+            ZoomBid
+        </h1>
+        <div className="bg-white py-2 px-5">
+            <span>
+                {user.name}
+            </span>
+        
+
+        </div>
+       </div>
+        <div className="p-5">{children}</div>
+      </div>
+    )
+  );
 }
 
 export default ProtectedPage;
