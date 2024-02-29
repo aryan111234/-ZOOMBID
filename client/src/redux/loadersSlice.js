@@ -10,4 +10,6 @@ export const loadersSlice = createSlice({
             state.loading = action.payload;
         },
     }
-})
+});
+
+export const {SetLoader} = loadersSlice.actions;

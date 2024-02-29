@@ -1,7 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
+import {loadersSlice} from './loadersSlice';
 
 
-const store = configure({
+
+const store = configureStore({
     reducer: {
         loaders: loadersSlice.reducer,
     },
