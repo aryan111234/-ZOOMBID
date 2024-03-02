@@ -3,6 +3,7 @@ import { message } from "antd";
 import { GetCurrentUser } from "../apicalls/users";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { SetLoader } from "../redux/loadersSlice";
 
 function ProtectedPage({ children }) {
   const [user, setuser] = React.useState(null);
@@ -39,7 +40,7 @@ function ProtectedPage({ children }) {
     // Parent element of Protected Route.
     user && (
       <div>
-        {/* header */}
+        {/* Header */}
         <div className="flex justofy-between items-center bg-primary p-5">
           <h1 className="text-2xl text-white">ZoomBid </h1>
           <div className="bg-white py-2 px-5 rounded flex gap-1 items-center">
