@@ -2,11 +2,12 @@ import React, { useEffect } from "react";
 import { message } from "antd";
 import { GetCurrentUser } from "../apicalls/users";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { SetLoader } from "../redux/loadersSlice";
+import { SetUser } from "../redux/usersSlice";
 
 function ProtectedPage({ children }) {
-  const [user, setuser] = React.useState(null);
+ const {user} = useSelector((state) => state.users);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const validateToken = async () => {
@@ -16,7 +17,7 @@ function ProtectedPage({ children }) {
       dispatch(SetLoader(false));
 
       if (response.success) {
-        setuser(response.success);
+        dispatch(SetUser(response.data));
       } else {
         navigate("/login");
         message.error(response.message);
@@ -45,7 +46,10 @@ function ProtectedPage({ children }) {
           <h1 className="text-2xl text-white">ZoomBid </h1>
           <div className="bg-white py-2 px-5 rounded flex gap-1 items-center">
             <i className="ri-shield-user-line"></i>
-            <span className="underline cursor-pointer uppercase">
+            <span className="underline cursor-pointer uppercase"
+            onClick={() => navigate("/profile")}
+            
+            >
               {user.name}
             </span>
             <i
