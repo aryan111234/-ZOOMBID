@@ -6,10 +6,10 @@ export const loadersSlice = createSlice({
         loading: false,
     },
     reducers: {
-        SetLoader: (state,action) => {
+        setLoader: (state,action) => {
             state.loading = action.payload;
         },
     }
 });
 
-export const {SetLoader} = loadersSlice.actions;
+export const {setLoader} = loadersSlice.actions;

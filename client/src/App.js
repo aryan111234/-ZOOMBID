@@ -1,27 +1,82 @@
-import { useSelector } from "react-redux";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from './Pages/Home';
-import Login from './Pages/Login';
-import Register from './Pages/Register';
-import Profile from './Pages/Profile';
+import React from "react";
+import Footer from "./Components/Footer";
+import Signup from "./Pages/Signup";
+import Login from "./Pages/Login";
+import { Route, Routes } from "react-router-dom";
 import ProtectedPage from "./Components/ProtectedPage";
 import Spinner from "./Components/Spinner";
+import { useSelector } from "react-redux";
+import SellerDashboard from "./Pages/SellerDashboard/SellerDashboard";
+import Admin from "./Pages/Admin";
+import ProductInfo from "./Pages/ProductInfo";
+import Home from "./Pages/Home/Home";
+import ForgotPassword from "./Pages/ForgetPassword";
+import OTPVerification from "./Pages/OTPVerification";
+import Myprofile from "./Pages/Myprofile";
+import AboutUs from "./Pages/AboutUs";
+import ContactUs from "./Pages/ContactUs";
 
-function App() {
-  const {loading} = useSelector(state => state.loaders);
+
+const App = () => {
+  const { loading } = useSelector((state) => state.loaders);
   return (
     <div>
       {loading && <Spinner />}
-      <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<ProtectedPage><Home/></ProtectedPage>}/>
-        <Route path="/profile" element={<ProtectedPage><Profile/></ProtectedPage>}/>
-        <Route path="/login" element={<Login/>}/>
-        <Route path="/register" element={<Register/>}/>
-      </Routes>
-      </BrowserRouter>
+      <section>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <ProtectedPage>
+                <Home />
+              </ProtectedPage>
+            }
+          />
+          <Route
+            path="/product/:id"
+            element={
+              <ProtectedPage>
+                <ProductInfo />
+              </ProtectedPage>
+            }
+          />
+          <Route
+            path="/SellerDashboard"
+            element={
+              <ProtectedPage>
+                <SellerDashboard />
+              </ProtectedPage>
+            }
+          />
+
+          <Route
+            path="/admin"
+            element={
+              <ProtectedPage>
+                <Admin />
+              </ProtectedPage>
+            }
+          />
+          <Route
+            path="/myprofile"
+            element={
+              <ProtectedPage>
+                <Myprofile />
+              </ProtectedPage>
+            }
+          />
+
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/forgotpassword" element={<ForgotPassword />} />
+          <Route path="/otpverification" element={<OTPVerification />} />
+          <Route path="/aboutus" element={<AboutUs />} />
+          <Route path="/contactus" element={<ContactUs />} />
+        </Routes>
+      </section>
+      <Footer />
     </div>
   );
-}
+};
 
 export default App;
