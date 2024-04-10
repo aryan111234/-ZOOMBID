@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import ZoomBidLogo from "../../src/images/zoombid-1.png";
+import ZoomBidLogo from "../../src/Images/zoombid-1.png";
 
 const Navbar = () => {
   const navigate = useNavigate();

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Popconfirm, Table, Tag, message } from "antd";
 import ProductsForm from "./ProductsForm";
 import { useDispatch, useSelector } from "react-redux";
-import { DeleteProduct, GetProducts } from "../../../apicalls/products";
+import { DeleteProduct, GetProducts } from "../../../apicalls/product";
 import { setLoader } from "../../../redux/loadersSlice";
 import { BiEdit } from "react-icons/bi";
 import { RiDeleteBin6Line } from "react-icons/ri";

@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setLoader } from "../../../redux/loadersSlice";
 import moment from "moment";
-import { GetAllBids, DeleteBid } from "../../../apicalls/products";
+import { GetAllBids, DeleteBid } from "../../../apicalls/product";
 import { RiDeleteBin6Line } from "react-icons/ri";
 const UserBids = () => {
   const [bidsData, setBidsData] = React.useState([]);

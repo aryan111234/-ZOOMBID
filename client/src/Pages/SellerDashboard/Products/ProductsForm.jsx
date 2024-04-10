@@ -1,11 +1,14 @@
 import { Button, Col, Form, Input, Modal, Row, Select, Tabs, message } from "antd";
-import TextArea from "antd/input/TextArea";
+// import {TextArea} from "antd";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Addproduct, EditProduct } from "../../../apicalls/product";
-import {Option} from "antd"
-import {setLoader} from ".../../redux/loadersSlice";
+// import {Option} from "antd"
+import {setLoader} from "../../../redux/loadersSlice";
 import Images from "./Images";
+
+const {Option} = Select;
+const {TextArea} = Input;
 
 const rules = [
   {

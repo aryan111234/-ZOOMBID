@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setLoader } from "../redux/loadersSlice";
-import Navbar from "..Components/Navbar";
+import Navbar from "../Components/Navbar";
 
 const rules = [
   {
