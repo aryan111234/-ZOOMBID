@@ -14,7 +14,7 @@ const AboutUs = () => {
             <span className="text-4xl font-bold text-[#14ae5c]">you</span>
           </h1>
           <p className="text-justify">
-            Zinbech is all about you - Our 
+            ZoomBid is all about your satisfaction.
           </p>
         </div>
         <div className="w-1/2 flex justify-end">
@@ -105,5 +105,6 @@ const AboutUs = () => {
     </div>
   );
 };
+
 
 export default AboutUs;
