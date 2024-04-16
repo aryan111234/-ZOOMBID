@@ -69,7 +69,7 @@ const UserBids = () => {
     {
       title: "Bid Date",
       dataIndex: "createdAt",
-      render: (text, record) => {
+      render: (text, _record) => {
         return moment(text).format("MMMM Do, h:mm a");
       },
     },

@@ -157,7 +157,7 @@ router.post(
     try {
       //upload image to cloudinary
       const result = await cloudinary.uploader.upload(req.file.path, {
-        folder: "kinbech",
+        folder: "ZoomBid",
       });
 
       const productId = req.body.productId;

@@ -8,14 +8,16 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <div className="footer-container">
-      <div className="contact-section">
+      <div className="logo-section">
         <img src={ZoomBidLogo} alt="ZoomBid logo" className="h-10" />
+      </div>
+       <div className="contact-section">
         <p className="contact contact-text">Got a Question? Call us on</p>
         <p className="contact contact-number">+977-9824074702</p>
-        <p className="contact contact-email">info@ZomBid.com</p>
+        <p className="contact contact-email">info@ZoomBid.com</p>
         <p className="contact contact-address">Ratopul, Kathmandu</p>
-      </div>
-
+       </div>
+      
       <div className="company-section">
         <h2 className="font-medium">Company</h2>
         <div className="flex flex-col gap-4 mt-2">
@@ -43,7 +45,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="downloadApp-section">
+      {/* <div className="downloadApp-section">
         <h2 className="font-medium">Download App</h2>
         <div className="store-container">
           <div className="storeIcon">
@@ -51,7 +53,7 @@ const Footer = () => {
             <img src={appstore} alt="" className="img3" />
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

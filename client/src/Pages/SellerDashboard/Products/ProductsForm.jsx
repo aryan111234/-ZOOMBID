@@ -1,14 +1,27 @@
-import { Button, Col, Form, Input, Modal, Row, Select, Tabs, message } from "antd";
-// import {TextArea} from "antd";
+import {
+  Button,
+  Col,
+  Form,
+  Input,
+  Modal,
+  Row,
+  Select,
+  Tabs,
+  message,
+} from "antd";
+import TextArea from "antd/es/input/TextArea";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Addproduct, EditProduct } from "../../../apicalls/product";
-// import {Option} from "antd"
-import {setLoader} from "../../../redux/loadersSlice";
+import { setLoader } from "../../../redux/loadersSlice";
 import Images from "./Images";
 
-const {Option} = Select;
-const {TextArea} = Input;
+const additionalThings = [
+  {
+    label: "Tax Cleared",
+    name: "taxCleared",
+  },
+];
 
 const rules = [
   {
@@ -26,7 +39,6 @@ function ProductsForm({
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.users);
   const formRef = React.useRef(null);
-
   const onFinish = async (values) => {
     try {
       dispatch(setLoader(true));
@@ -66,7 +78,7 @@ function ProductsForm({
   return (
     <Modal
       title=""
-      visible={showProductForm}
+      open={showProductForm}
       onCancel={handleCancel}
       centered
       width={1000}
@@ -99,8 +111,8 @@ function ProductsForm({
                 <Col span={8}>
                   <Form.Item label="Category" name="category" rules={rules}>
                     <Select>
-                      <Option value="Car">Car</Option>
-                      <Option value="Bike">Bike</Option>
+                      <option value="Car">Car</option>
+                      <option value="Bike">Bike</option>
                     </Select>
                   </Form.Item>
                 </Col>
@@ -108,13 +120,53 @@ function ProductsForm({
                 <Col span={8}>
                   <Form.Item label="Condition" name="condition" rules={rules}>
                     <Select>
-                      <Option value="Brand New">Brand New</Option>
-                      <Option value="Used-Like-New">Used-Like New</Option>
-                      <Option value="Used-Good">Used-Good</Option>
+                      <option value="Brand New">Brand New</option>
+                      <option value="Used-Like-New">Used-Like New</option>
+                      <option value="Used-Good">Used-Good</option>
                     </Select>
                   </Form.Item>
                 </Col>
               </Row>
+
+              <div className="flex gap-10">
+                {additionalThings.map((item) => {
+                  return (
+                    <Form.Item
+                      label={item.label}
+                      name={item.name}
+                      valuePropName="checked"
+                    >
+                      <Input
+                        type="checkbox"
+                        className="w-8 h-8"
+                        value={item.name}
+                        onChange={(e) => {
+                          formRef.current.setFieldsValue({
+                            [item.name]: e.target.checked,
+                          });
+                        }}
+                        checked={formRef.current?.getFieldsValue(item.name)}
+                      />
+                    </Form.Item>
+                  );
+                })}
+                <Form.Item
+                  label="Show Product Bids"
+                  name="ShowProductBids"
+                  valuePropName="checked"
+                >
+                  <Input
+                    type="checkbox"
+                    className="w-8 h-8"
+                    onChange={(e) => {
+                      formRef.current.setFieldsValue({
+                        ShowProductBids: e.target.checked,
+                      });
+                    }}
+                    checked={formRef.current?.getFieldsValue("ShowProductBids")}
+                  />
+                </Form.Item>
+              </div>
             </Form>
             {/* Footer buttons for the "General" tab */}
             <div className="flex justify-end gap-2">
